@@ -11,7 +11,7 @@ namespace Client.Controller.API
     class APIController
     {
         
-        string uri = "https://localhost:44356/database";
+        const string uri = "https://localhost:44356/database";
 
         public async Task<ObservableCollection<Message>> APIGetMsg()
         {

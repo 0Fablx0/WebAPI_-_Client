@@ -152,7 +152,7 @@ namespace Client.Model_Veiw
         private bool CanChatEntryExecuted(object p) => true;
 
         public ICommand SendMsg { get; }
-        private void OnSendMsgExecutedAsync(object p)
+        private async void OnSendMsgExecutedAsync(object p)
         {
             var strWithoutSpaces = textMsg.Replace(" ", "");
             var FreeStr = strWithoutSpaces.Replace("\n", "");
@@ -160,9 +160,9 @@ namespace Client.Model_Veiw
             if (FreeStr != string.Empty)
             {
                 APIController client = new APIController();
-                client.APISendMsgAsync(userName, textMsg.Trim());
+                await client.APISendMsgAsync(userName, textMsg.Trim());
                 textMsg = string.Empty;
-                getAllMessage();
+                await getAllMessage();
             }
             else
             {
@@ -174,9 +174,9 @@ namespace Client.Model_Veiw
 
         public ICommand RefreshChat { get; }
 
-        private void OnRefreshChatExecutedAsync(object p)
+        private async void OnRefreshChatExecutedAsync(object p)
         {
-            getAllMessage();
+            await getAllMessage();
         }
 
         private bool CanRefreshChatExecuted(object p) => true;
